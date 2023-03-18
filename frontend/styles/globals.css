@@ -1,0 +1,213 @@
+/* :root {
+  --max-width: 120rem;
+  --border-radius: 12px;
+  --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
+    'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
+    'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
+
+  --background-color: #FAFAFA;
+  --gradient-color-start: #FAFAFA;
+  --gradient-color-end: #fafafa00;
+  --accent-color: #ab69a7;
+  --font-color-primary: #000000;
+  --font-color-primary-alt: #ffffff;
+  --transparency-level-2: rgba(0, 0, 0, 0.05);
+  --transparency-level-1: rgba(0, 0, 0, 0.65);
+  --transparency-alt-level-1: rgba(255, 255, 255, 0.35);
+  --hover: #0d92ff;
+  --opacity: 50%;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #1A1B26;
+    --gradient-color-start: #1A1B26;
+    --gradient-color-end: #1a1b2600;
+    --accent-color: #549658;
+    --font-color-primary: #ffffff;
+    --font-color-primary-alt: #000000;
+    --transparency-level-2: rgba(255, 255, 255, 0.05);
+    --transparency-level-1: rgba(255, 255, 255, 0.65);
+    --transparency-alt-level-1: rgba(0, 0, 0, 0.35);
+    --hover: #0d92ff;
+    --opacity: 30%;
+  }
+} */
+
+@font-face {
+  font-family: SFPro;
+  src: url("../public/fonts/SFPro/sfpro-text-regular.ttf");
+}
+
+@font-face {
+  font-family: SFProDisplay;
+  src: url("../public/fonts/SFPro/sfpro-display-regular.ttf");
+}
+
+@font-face {
+  font-family: SFProSemibold;
+  src: url("../public/fonts/SFPro/sfpro-text-semibold.ttf");
+}
+
+@font-face {
+  font-family: SFProDisplayBold;
+  src: url("../public/fonts/SFPro/sfpro-display-bold.ttf");
+}
+
+@font-face {
+  font-family: SFMono;
+  src: url("../public/fonts/SFPro/sfmono-regular.ttf");
+}
+
+.dark {
+  --background-color: #1A1B26;
+  --gradient-color-start: #1A1B26;
+  --gradient-color-end: #1a1b2600;
+  --accent-color: rgba(84, 150, 88, 0.35);
+  --font-color-primary: #ffffff;
+  --font-color-primary-alt: #000000;
+  --transparency-level-3: rgba(255, 255, 255, 0.05);
+  --transparency-level-2: rgba(255, 255, 255, 0.25);
+  --transparency-level-1: rgba(255, 255, 255, 0.65);
+  --transparency-alt-level-1: rgba(0, 0, 0, 0.35);
+  --hover: #0d92ff;
+  --opacity: 30%;
+  --width: 120rem;
+}
+
+.light {
+  --background-color: #FAFAFA;
+  --gradient-color-start: #FAFAFA;
+  --gradient-color-end: #fafafa00;
+  --accent-color: rgba(171, 105, 167, 0.35);
+  --font-color-primary: #000000;
+  --font-color-primary-alt: #ffffff;
+  --transparency-level-3: rgba(0, 0, 0, 0.05);
+  --transparency-level-2: rgba(0, 0, 0, 0.25);
+  --transparency-level-1: rgba(0, 0, 0, 0.65);
+  --transparency-alt-level-1: rgba(255, 255, 255, 0.35);
+  --hover: #0d92ff;
+  --opacity: 50%;
+  --width: 120rem;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+	box-sizing: border-box;
+	font-size: 62.5%;
+	scroll-behavior: smooth;
+	scrollbar-width: none;
+  overflow-x: hidden;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  transition: all .5s;
+	cursor: default;
+}
+
+body {
+  overflow-x: hidden;
+  background-color: var(--background-color);
+  font-size: 1.6rem;
+}
+
+body::-webkit-scrollbar{
+	display: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* @media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+} */
+
+.main {
+  display: flex;
+  flex-direction: column;
+  min-height: 95vh; 
+  max-width: var(--width);
+  margin: 2rem auto;
+  padding: 0 2rem;
+}
+
+.nav {
+  display: flex;
+  max-width: var(--width);
+  height: 10rem;
+  font-size: 1.6rem;
+  padding: 0 1rem;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.nav .button {
+  padding: 1rem 2rem;
+}
+
+.nav .active {
+  background-color: var(--transparency-level-2);
+  border-radius: 1rem;
+}
+
+.nav .button:hover {
+  color: var(--hover);
+}
+
+@media only screen and (max-width: 768px) {
+  .nav {
+    font-size: 1.2rem;
+  }
+  .nav .button {
+    padding: 1rem 1.5rem;
+  }
+}
+
+.main .header {
+  font-size: 10rem;
+  width: var(--width);
+  font-family: Arial;
+  word-break: break-word;
+}
+
+.main .header .input-text {
+  color: var(--font-color-primary);
+}
+
+/* .main .header .input-text::before {
+  transition: all 1s;
+  content: '';
+  background: var(--accent-color);
+  width: 340px;
+  height: 180px;
+  z-index: -1;
+  position: absolute;
+  filter: blur(70px);
+} */
+
+.main .header .output-prediction {
+  color: var(--transparency-level-2);
+}
+
+.main .textbox {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  padding: 3rem 0;
+  /* margin: 3rem 0; */
+  width: var(--width);
+  font-size: 2.6rem;
+  /* font-family: Arial, sans-serif; */
+}
