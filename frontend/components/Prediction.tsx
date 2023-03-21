@@ -1,13 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import axios from 'axios';
 
-export interface ProcessEnv {
-  [key: string]: string | undefined
-}
-
 const Prediction = () => {
   const [idleTime, setIdleTime] = useState(0);
-  
   const [savedText, setSavedText] = useState("Hello");
   const [predictiveText, setPredictiveText] = useState('World...');
   const [autocomplete, setAutocomplete] = useState(false);
@@ -38,8 +33,7 @@ const Prediction = () => {
   
   async function f() {
     let res = await axios.post(
-      // @ts-ignore
-      process.env.API, {
+      `${process.env.NEXT_PUBLIC_API}/api/`, {
         "body": savedText
       }
     );
