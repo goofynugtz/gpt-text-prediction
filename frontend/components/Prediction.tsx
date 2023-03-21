@@ -1,5 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import axios from 'axios';
+
+export interface ProcessEnv {
+  [key: string]: string | undefined
+}
+
 const Prediction = () => {
   const [idleTime, setIdleTime] = useState(0);
   
@@ -30,10 +35,11 @@ const Prediction = () => {
       window.removeEventListener("keydown", onKeyboardActivity);
     };
   });
-
+  
   async function f() {
     let res = await axios.post(
-      "http://localhost:8000/api/", {
+      // @ts-ignore
+      process.env.API, {
         "body": savedText
       }
     );
