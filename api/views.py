@@ -5,9 +5,9 @@ from .models import device, stoi, decode, BigramLanguageModel
 import torch, joblib
 import os
 
-model = joblib.load(os.getcwd() + "/api/model/prediction_model.joblib")
-m = model.to(device)
-# m = torch.load(os.getcwd() + "/api/model/prediction_model.pt", map_location ='cpu')
+# model = joblib.load(os.getcwd() + "/api/model/prediction_model.joblib")
+# m = model.to(device)
+m = torch.load(os.getcwd() + "/api/model/prediction_model.pt", map_location ='cpu')
 
 @api_view(['POST'])
 def predict(request):
