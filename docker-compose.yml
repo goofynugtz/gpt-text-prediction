@@ -6,7 +6,6 @@ services:
     command: >
             sh -c "python manage.py migrate &&
             python manage.py runserver 0.0.0.0:8000"
-
     ports:
       - 8000:8000
     # deploy:
@@ -18,3 +17,10 @@ services:
     #           capabilities: [gpu]
     volumes:
       - ./:/usr/src/app/
+  nginx:
+    image: nginx:latest
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./nginx/conf.d/:/etc/nginx/conf.d/

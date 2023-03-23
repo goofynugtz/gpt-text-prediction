@@ -13,6 +13,7 @@ docutils==0.19
 filelock==3.9.0
 gitdb==4.0.10
 GitPython==3.1.31
+gunicorn
 idna==3.4
 imagesize==1.4.1
 importlib==1.0.4
