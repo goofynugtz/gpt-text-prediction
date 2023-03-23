@@ -33,7 +33,7 @@ const Prediction = () => {
   
   async function f() {
     let res = await axios.post(
-      `${process.env.NEXT_PUBLIC_API}/api/`, {
+      `${process.env.NEXT_PUBLIC_API}`, {
         "body": savedText
       }
     );

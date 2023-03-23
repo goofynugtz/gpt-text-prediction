@@ -17,10 +17,12 @@ services:
     #           capabilities: [gpu]
     volumes:
       - ./:/usr/src/app/
-  nginx:
-    image: nginx:latest
-    ports:
-      - 80:80
-      - 443:443
-    volumes:
-      - ./nginx/conf.d/:/etc/nginx/conf.d/
+  # nginx:
+  #   image: nginx:latest
+  #   ports:
+  #     - 80:80
+  #     - 443:443
+  #   volumes:
+  #     - ./nginx/conf.d/:/etc/nginx/conf.d/
+  #     - /etc/letsencrypt:/etc/letsencrypt:ro
+  #     - /tmp/acme_challenge:/tmp/acme_challenge
