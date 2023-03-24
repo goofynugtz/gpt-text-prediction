@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { FiSun, FiMoon } from 'react-icons/fi';
 
-interface DarkModeProps {
+export interface DarkModeProps {
   mounted: any,
   setMounted: any,
   theme: any,

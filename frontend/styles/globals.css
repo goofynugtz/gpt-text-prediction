@@ -50,6 +50,7 @@ body {
   margin: 0;
   transition: all .5s;
 	cursor: default;
+  font-family: Arial;
 }
 
 body {
@@ -121,7 +122,13 @@ a {
   font-size: 10rem;
   width: var(--width);
   font-family: Arial;
+  /* word-wrap: break-word; */
+  /* height: 100%; */
   word-break: break-word;
+  /* display: flex; */
+  /* flex-wrap: wrap; */
+  /* flex-direction: row; */
+  /* white-space: pre-wrap; */
 }
 
 @media only screen and (max-width: 1400px) {
@@ -161,4 +168,12 @@ a {
     width: 100%;
     font-size: 1.6rem;
   }
+}
+
+.spinner .circle-1 {
+  border-top-color: var(--font-color-primary) !important;
+}
+
+.spinner .circle-2 {
+  border-bottom-color: var(--font-color-primary) !important;
 }
