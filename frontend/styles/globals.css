@@ -122,13 +122,8 @@ a {
   font-size: 10rem;
   width: var(--width);
   font-family: Arial;
-  /* word-wrap: break-word; */
-  /* height: 100%; */
   word-break: break-word;
-  /* display: flex; */
-  /* flex-wrap: wrap; */
-  /* flex-direction: row; */
-  /* white-space: pre-wrap; */
+  align-items: center;
 }
 
 @media only screen and (max-width: 1400px) {

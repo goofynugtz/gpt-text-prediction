@@ -86,14 +86,14 @@ const Prediction = () => {
       <div className="header">
         {
           autocomplete ?
-            <span className="input-text">{savedText}</span> : <span className="input-text">{savedText} </span>
+            <span className="input-text">{savedText} </span> : <span className="input-text">{savedText} </span>
         }
         {
-          loading ? 
-          <HalfCircleSpinner className="spinner" size={50} /> : <></>
+          loading ?
+            <HalfCircleSpinner className="spinner" size={50} /> : <></>
         }
-        <span className="output-prediction">{predictiveText}</span>
-      <input type="text" className="textbox" ref={inputRef} placeholder="Start typing here" onChange={handleChange} onKeyDown={onKeyDown} />
+        <span className="output-prediction"> {predictiveText}</span>
+        <input type="text" className="textbox" ref={inputRef} placeholder="Start typing here" onChange={handleChange} onKeyDown={onKeyDown} />
       </div>
     </>
   )
