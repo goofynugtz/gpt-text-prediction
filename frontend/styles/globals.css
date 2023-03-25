@@ -120,6 +120,7 @@ a {
 
 .main .header {
   font-size: 10rem;
+  transition: 1s all;
   width: var(--width);
   font-family: Arial;
   word-break: break-word;
@@ -144,9 +145,20 @@ a {
   color: var(--font-color-primary);
 }
 
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: orange; }
+}
 
 .main .header .output-prediction {
   color: var(--transparency-level-2);
+  overflow: hidden;
+  animation: typing 3.5s steps(40, end),
+  blink-caret .75s step-end infinite;
 }
 
 .main .textbox {

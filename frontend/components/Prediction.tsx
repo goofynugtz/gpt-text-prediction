@@ -4,9 +4,13 @@ import { HalfCircleSpinner } from 'react-epic-spinners'
 
 const Prediction = () => {
   const [idleTime, setIdleTime] = useState(0);
+  // const [savedText, setSavedText] = useState("Hello");
   const [savedText, setSavedText] = useState("Hello");
-  const [predictiveText, setPredictiveText] = useState('World...');
+  // const [predictiveText, setPredictiveText] = useState('World...');
+  const [predictiveText, setPredictiveText] = useState(['World...']);
+
   const [autocomplete, setAutocomplete] = useState(false);
+  const [wordCount, setWordCount] = useState(0);
   const [loading, setLoading] = useState(false);
   const inputRef = useRef(null);
 
@@ -15,7 +19,7 @@ const Prediction = () => {
   useEffect(() => {
     // @ts-ignore
     inputRef.current.focus();
-  })
+  }, [predictiveText])
 
   useEffect(() => {
     let interval: any = null;
@@ -38,21 +42,27 @@ const Prediction = () => {
     let res = await axios.post(
       `${process.env.NEXT_PUBLIC_API}`, {
       "body": savedText
-    }
-    );
+    });
     let cutout = savedText?.length
     res['data'] = res['data'].slice(cutout)
-    setPredictiveText(res['data'])
+    let _data: any = String(res['data']).match(/(\b\W?\w+\'*\w\b'?)/g)
+    const n = _data.length
+    let _placeholder: any = []
+    for (let i = 0; i < n; i++) {
+      (function(i){
+        setTimeout(() => {
+          _placeholder = [..._placeholder, _data[i]]
+          setPredictiveText(_placeholder)
+          console.log(_placeholder)
+        }, Math.random()*i*500);
+      })(i)
+    }
     setLoading(false)
   }
 
   useEffect(() => {
-    if (idleTime >= 300) {
-      // @ts-ignore
-      if (inputRef.current?.value.length > 0) {
-        f();
-      }
-    }
+    // @ts-ignore
+    if (idleTime >= 300 && inputRef.current?.value.length > 0) f();
   }, [idleTime]);
 
   function handleChange(e: any) {
@@ -63,20 +73,33 @@ const Prediction = () => {
   const onKeyDown = (e: any) => {
     if (e.key === "Tab") {
       e.preventDefault();
+      // setWordCount(wordCount);
+      console.log(predictiveText);
       if (predictiveText.length >= 1) {
-        let _predictiveText: any = String(predictiveText).match(/(\b\W?\w+\'*\w\b'?)/g)
-        // @ts-ignore
-        inputRef.current.value = savedText + " " + _predictiveText[0];
-        setSavedText(savedText + " " + _predictiveText[0]);
-        _predictiveText.shift()
-        setPredictiveText(_predictiveText);
+        if (wordCount === 0) {
+          console.log('haha')
+          // @ts-ignore
+          inputRef.current.value = savedText + " " + predictiveText[0];
+        } else {
+          // @ts-ignore
+          inputRef.current.value = savedText + predictiveText[0];
+        }
+        setSavedText(savedText + " " + predictiveText[0]);
+        predictiveText.shift();
+        setPredictiveText(predictiveText);
+        // setPredictiveText(_predictiveText);
       }
     }
-    else if (e.key === predictiveText[0]) {
+    else if (predictiveText[0] != undefined && e.key === predictiveText[0][0]) {
       setAutocomplete(true)
-      let _temp = predictiveText;
+      let _temp = predictiveText[0];
       setSavedText(savedText + _temp[0]);
-      setPredictiveText(_temp.slice(1))
+      if (_temp.slice(1).length > 0) {
+        predictiveText[0] = _temp.slice(1)
+      } else {
+        predictiveText.shift()
+      }
+      setPredictiveText(predictiveText)
     }
     else setAutocomplete(false)
   };
@@ -92,7 +115,9 @@ const Prediction = () => {
           loading ?
             <HalfCircleSpinner className="spinner" size={50} /> : <></>
         }
-        <span className="output-prediction"> {predictiveText}</span>
+        <span className="output-prediction"> {
+          predictiveText.map((e, i: any) => <span key={i}> {e}</span>)
+        }</span>
         <input type="text" className="textbox" ref={inputRef} placeholder="Start typing here" onChange={handleChange} onKeyDown={onKeyDown} />
       </div>
     </>
