@@ -2,7 +2,7 @@
   --background-color: #1A1B26;
   --gradient-color-start: #1A1B26;
   --gradient-color-end: #1a1b2600;
-  --accent-color: rgba(84, 150, 88, 0.35);
+  --accent-color: rgb(84, 150, 88);
   --font-color-primary: #ffffff;
   --font-color-primary-alt: #000000;
   --transparency-level-3: rgba(255, 255, 255, 0.05);
@@ -18,7 +18,7 @@
   --background-color: #FAFAFA;
   --gradient-color-start: #FAFAFA;
   --gradient-color-end: #fafafa00;
-  --accent-color: rgba(171, 105, 167, 0.35);
+  --accent-color: rgb(171, 105, 167);
   --font-color-primary: #000000;
   --font-color-primary-alt: #ffffff;
   --transparency-level-3: rgba(0, 0, 0, 0.05);
@@ -50,7 +50,7 @@ body {
   margin: 0;
   transition: all .5s;
 	cursor: default;
-  font-family: Arial;
+  font-family: SFPro;
 }
 
 body {
@@ -157,8 +157,8 @@ a {
 .main .header .output-prediction {
   color: var(--transparency-level-2);
   overflow: hidden;
-  animation: typing 3.5s steps(40, end),
-  blink-caret .75s step-end infinite;
+  /* animation: typing 3.5s steps(40, end), */
+  /* blink-caret .75s step-end infinite; */
 }
 
 .main .textbox {
@@ -183,4 +183,35 @@ a {
 
 .spinner .circle-2 {
   border-bottom-color: var(--font-color-primary) !important;
+}
+
+.model-selector {
+  display: flex;
+}
+
+.model-selector .button {
+  width: 15rem;
+  height: 5rem;
+  border-radius: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 2rem 5rem 0;
+  background-color: var(--transparency-level-3);
+  transition: all .2s;
+}
+
+.model-selector .button:hover {
+  background-color: var(--transparency-level-2);
+  transition: all .2s;
+}
+
+.model-selector .active {
+  background-color: var(--accent-color);
+  color: var(--font-color-primary-alt);
+}
+
+.model-selector .active:hover {
+  background-color: var(--accent-color);
+  color: var(--font-color-primary-alt);
 }

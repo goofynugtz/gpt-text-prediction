@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import axios from 'axios'
 import { HalfCircleSpinner } from 'react-epic-spinners'
 
-const Prediction = () => {
+const Prediction = ({model}:any) => {
   const [idleTime, setIdleTime] = useState(0);
   // const [savedText, setSavedText] = useState("Hello");
   const [savedText, setSavedText] = useState("Hello");
@@ -40,7 +40,7 @@ const Prediction = () => {
   async function f() {
     setLoading(true)
     let res = await axios.post(
-      `${process.env.NEXT_PUBLIC_API}`, {
+      `${process.env.NEXT_PUBLIC_API}${model}`, {
       "body": savedText
     });
     let cutout = savedText?.length
@@ -73,7 +73,6 @@ const Prediction = () => {
   const onKeyDown = (e: any) => {
     if (e.key === "Tab") {
       e.preventDefault();
-      // setWordCount(wordCount);
       console.log(predictiveText);
       if (predictiveText.length >= 1) {
         if (wordCount === 0) {
@@ -87,7 +86,6 @@ const Prediction = () => {
         setSavedText(savedText + " " + predictiveText[0]);
         predictiveText.shift();
         setPredictiveText(predictiveText);
-        // setPredictiveText(_predictiveText);
       }
     }
     else if (predictiveText[0] != undefined && e.key === predictiveText[0][0]) {

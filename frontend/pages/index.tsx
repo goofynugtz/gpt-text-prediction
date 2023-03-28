@@ -3,9 +3,10 @@ import { useState, useEffect } from "react";
 import { useTheme } from 'next-themes';
 import Navbar from '@/components/Navbar'
 import Prediction from '@/components/Prediction'
+import ModelType from '@/components/ModelType';
 
 export default function Home() {
-
+  const [model, setModel] = useState('')
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme, resolvedTheme } = useTheme();
 
@@ -22,7 +23,8 @@ export default function Home() {
       </Head>
       <main className='main'>
         <Navbar {...{mounted, setMounted, theme, setTheme, resolvedTheme}}/>
-        <Prediction/>
+        <ModelType {...{model, setModel}}/>
+        <Prediction {...{model}}/>
       </main>
     </>
   )
