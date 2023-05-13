@@ -3,6 +3,7 @@ version: '3'
 services:
   web:
     build: .
+    command: python manage.py runserver
     volumes:
       - ./static:/static
       - ./:/usr/src/app/
