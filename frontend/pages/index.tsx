@@ -6,7 +6,7 @@ import Prediction from '@/components/Prediction'
 import ModelType from '@/components/ModelType';
 
 export default function Home() {
-  const [model, setModel] = useState('')
+  const [model, setModel] = useState('/v1/')
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme, resolvedTheme } = useTheme();
 

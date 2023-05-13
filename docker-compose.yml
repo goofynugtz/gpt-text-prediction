@@ -3,11 +3,13 @@ version: '3'
 services:
   web:
     build: .
-    command: >
-            sh -c "python manage.py migrate &&
-            python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - ./static:/static
+      - ./:/usr/src/app/
     ports:
       - 8000:8000
+    env_file:
+      - ./.env
     # deploy:
     #   resources:
     #     reservations:
@@ -15,14 +17,14 @@ services:
     #         - driver: nvidia
     #           count: 1
     #           capabilities: [gpu]
-    volumes:
-      - ./:/usr/src/app/
   # nginx:
   #   image: nginx:latest
   #   ports:
   #     - 80:80
   #     - 443:443
   #   volumes:
-  #     - ./nginx/conf.d/:/etc/nginx/conf.d/
-  #     - /etc/letsencrypt:/etc/letsencrypt:ro
-  #     - /tmp/acme_challenge:/tmp/acme_challenge
+  #     - ./static:/static
+  #     - ./nginx/conf.d:/etc/nginx/conf.d
+  #     - ./nginx/certbot/conf:/etc/letsencrypt
+  #     - ./nginx/certbot/logs:/var/log/letsencrypt
+  #     - ./nginx/certbot/data:/usr/share/nginx/html/letsencrypt

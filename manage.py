@@ -2,7 +2,7 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
-from api.models import BigramLanguageModel, Block, FeedFoward, MultiHeadAttention, Head
+from api.v1.models import BigramLanguageModel, Block, FeedFoward, MultiHeadAttention, Head
 def main():
     """Run administrative tasks."""
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "gptTextPrediction.settings")

@@ -54,6 +54,7 @@ body {
 }
 
 body {
+  margin: 0 auto;
   overflow-x: hidden;
   background-color: var(--background-color);
   font-size: 1.6rem;

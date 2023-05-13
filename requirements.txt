@@ -11,12 +11,13 @@ django-cors-headers==3.14.0
 djangorestframework==3.14.0
 docutils==0.19
 filelock==3.9.0
+fsspec==2023.5.0
 gitdb==4.0.10
 GitPython==3.1.31
-gunicorn
+gunicorn==20.1.0
+huggingface-hub==0.14.1
 idna==3.4
 imagesize==1.4.1
-importlib==1.0.4
 importlib-metadata==6.1.0
 Jinja2==3.1.2
 joblib==1.2.0
@@ -30,6 +31,8 @@ Pillow==9.3.0
 Pygments==2.14.0
 python-decouple==3.8
 pytz==2022.7.1
+PyYAML==6.0
+regex==2023.5.5
 requests==2.28.1
 scikit-learn==1.2.2
 scipy==1.10.1
@@ -45,6 +48,9 @@ sphinxcontrib-serializinghtml==1.1.5
 sqlparse==0.4.3
 sympy==1.11.1
 threadpoolctl==3.1.0
+tokenizers==0.13.3
+tqdm==4.65.0
+transformers==4.29.1
 typing_extensions==4.4.0
 tzdata==2022.7
 urllib3==1.26.13

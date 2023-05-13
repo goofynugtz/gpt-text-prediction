@@ -39,6 +39,7 @@ const Prediction = ({model}:any) => {
 
   async function f() {
     setLoading(true)
+    console.log(`${process.env.NEXT_PUBLIC_API}${model}`)
     let res = await axios.post(
       `${process.env.NEXT_PUBLIC_API}${model}`, {
       "body": savedText
