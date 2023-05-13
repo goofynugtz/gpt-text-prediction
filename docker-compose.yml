@@ -3,7 +3,7 @@ version: '3'
 services:
   web:
     build: .
-    command: python manage.py runserver
+    command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - ./static:/static
       - ./:/usr/src/app/
@@ -18,14 +18,16 @@ services:
     #         - driver: nvidia
     #           count: 1
     #           capabilities: [gpu]
-  # nginx:
-  #   image: nginx:latest
-  #   ports:
-  #     - 80:80
-  #     - 443:443
-  #   volumes:
-  #     - ./static:/static
-  #     - ./nginx/conf.d:/etc/nginx/conf.d
-  #     - ./nginx/certbot/conf:/etc/letsencrypt
-  #     - ./nginx/certbot/logs:/var/log/letsencrypt
-  #     - ./nginx/certbot/data:/usr/share/nginx/html/letsencrypt
+  nginx:
+    image: nginx:latest
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./static:/static
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/certbot/conf:/etc/letsencrypt
+      - ./nginx/certbot/logs:/var/log/letsencrypt
+      - ./nginx/certbot/data:/usr/share/nginx/html/letsencrypt
+    depends_on:
+      - web
