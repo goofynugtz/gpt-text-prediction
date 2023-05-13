@@ -1,6 +1,11 @@
 import torch
 import torch.nn.functional as F
-from .models import tokenizer, model
+from transformers import GPT2Tokenizer, GPT2LMHeadModel
+
+tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
+model = GPT2LMHeadModel.from_pretrained('gpt2')
+
+model.eval()
 
 def predict_next_word(text, num_words=1, temperature=1.0):
     input_ids = torch.tensor(tokenizer.encode(text)).unsqueeze(0)
